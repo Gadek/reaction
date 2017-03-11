@@ -8,11 +8,12 @@ var going=false;
 var checked=false;
 var againButton;
 var again=false;
+var input;
 function throwBall() {
   noStroke();
   fill(0,100,250)
   ellipse(x,100,50,50);
-  x+=11;
+  x+=12;
   if(x>width+20)
   {
     noLoop();
@@ -20,7 +21,7 @@ function throwBall() {
   } else return false;
 }
 function setProperPosition() {
-  if(ustalony_czas>licznik&&ustalony_czas<licznik+4){
+  if(ustalony_czas>licznik&&ustalony_czas<licznik+3){
     background(255,0,255);
     if(!picked) {
       right_pos=x;
@@ -43,18 +44,33 @@ function checkClick(x) {
 function createLines() {
   for(var i=0 ; i<6 ;i++) {
     stroke(100);
-    strokeWeight(80);
+    strokeWeight(110);
     line((width/4)*i,0,(width/4)*i,height);
   }
 }
 function start() {
-  x=0;
-  ustalony_czas=floor(random(19,51));
+  x=-80;
+  ustalony_czas=floor(random(15,65));
   loop();
   licznik=0;
   show_dist.html('');
   checked=false;
   picked=false;
- going=true;
-againButton.hide();
+  going=true;
+  againButton.hide();
+}
+function createDOMElements() {
+  againButton=createButton("START");
+  againButton.mousePressed(start);
+  againButton.position(10,10)
+  againButton.id("button");
+  show_dist=createP("");
+  show_dist.id("distans");
+  show_dist.position(0,height*2/3);
+  input=createInput("Ile klatek na sekunde");
+  input.changed(setFrames);
+}
+
+function setFrames() {
+  frameRate(Number(input.value()))
 }
