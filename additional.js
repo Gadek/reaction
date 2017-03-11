@@ -8,7 +8,7 @@ var going=false;
 var checked=false;
 var againButton;
 var again=false;
-var input;
+var slider;
 function throwBall() {
   noStroke();
   fill(0,100,250)
@@ -67,10 +67,11 @@ function createDOMElements() {
   show_dist=createP("");
   show_dist.id("distans");
   show_dist.position(0,height*2/3);
-  input=createInput("Ile klatek na sekunde");
-  input.changed(setFrames);
+  slider=createSlider(1,60,60);
+  slider.input(setFrames);
+  slider.position(1,241);
 }
 
 function setFrames() {
-  frameRate(Number(input.value()))
+  frameRate(Number(slider.value()))
 }
