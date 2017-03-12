@@ -17,6 +17,10 @@ function throwBall() {
   if(x>width+20)
   {
     noLoop();
+    if(going) {
+      background(210,210,255);
+      createLines();
+    }
     return true;
   } else return false;
 }
@@ -31,6 +35,7 @@ function setProperPosition() {
 }
 
 function checkClick(x) {
+  noStroke();
   fill(0);
   rect(x,0,3,height);
   fill(0,255,0);
@@ -43,7 +48,7 @@ function checkClick(x) {
 
 function createLines() {
   for(var i=0 ; i<6 ;i++) {
-    stroke(100);
+    stroke(140);
     strokeWeight(110);
     line((width/4)*i,0,(width/4)*i,height);
   }
